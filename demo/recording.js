@@ -5,24 +5,24 @@ const agora = require("./agora_node_ext");
 
 class Recording  {
     constructor() {
-        super();
+        //super();
         this.recording = new agora.NodeRecordingSdk();
-        'this.streams = {};
+        //'this.streams = {};
     }
 
     initialize(appid, onSuccess, onFailed) {
-        return this.rtcengine.initialize(appid);
+        //return this.rtcengine.initialize(appid);
     };
 
-    joinChannel(key, name, chan_info, uid) {
-        return this.rtcengine.joinChannel(key, name, chan_info, uid);
+    joinChannel(key, name, chan_info, uid, appliteDir) {
+        return this.recording.joinChannel(key, name, chan_info, uidi, appliteDir);
     }
 
     leaveChannel() {
-        var localRender = this.streams["local"];
+        /*var localRender = this.streams["local"];
         this.streams = {};
         this.streams["local"] = localRender;
-        return this.rtcengine.leaveChannel();
+        return this.rtcengine.leaveChannel();*/
     }
 
 };
