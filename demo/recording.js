@@ -16,9 +16,9 @@ class Recording  {
         //return this.rtcengine.initialize(appid);
     };
 
-    joinChannel(key, name, chan_info, uid, appliteDir) {
+    joinChannel(key, name, chan_info, uid, appliteDir, appid) {
         console.log("hhhhhhh");
-        return this.recording.joinChannel(key, name, chan_info, uidi, appliteDir);
+        return this.recording.joinChannel(key, name, appliteDir, appid, uid);
     }
 
     leaveChannel() {

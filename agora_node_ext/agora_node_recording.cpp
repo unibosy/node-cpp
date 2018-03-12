@@ -15,8 +15,9 @@ DEFINE_CLASS(NodeRecordingSdk);
 void NodeRecordingSdk::Init(Local<Object>& module) {
     Isolate *isolate = module->GetIsolate();
     BEGIN_PROPERTY_DEFINE(NodeRecordingSdk, createInstance, 2)//NodeRecordingSdk count of member var
-    PROPERTY_METHOD_DEFINE(joinChannel)
+        PROPERTY_METHOD_DEFINE(joinChannel)
     EN_PROPERTY_DEFINE()
+    module->Set(String::NewFromUtf8(isolate, "NodeRecordingSdk"), tpl->GetFunction());
 }
 
 //The function is used as class constructor in JS layer
