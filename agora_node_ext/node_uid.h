@@ -47,7 +47,7 @@
              * @param value : the V8 value type contains uid_t type value.
              * @param id : the uid_t type reference used to store the value
              */
-            static napi_status getUidFromNodeValue(Local<Value>& value, uid_t& id)
+            static napi_status getUidFromNodeValue(const Local<Value>& value, uid_t& id)
             {
                 napi_status status = napi_get_value_uint32_(value, id);
                 return status;

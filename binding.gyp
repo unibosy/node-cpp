@@ -27,8 +27,7 @@
             './sdk/lib/'
             ],
             "link_settings": {
-            "libraries": [
-            ]
+            "libraries": ["/root/wangshiwei/ws/nodeapi/Agora_Recording_SDK_for_Linux_FULL/samples/nodeApi/sdk/lib/recording.so"]
             },
             'sources': [],
             'defines!': [

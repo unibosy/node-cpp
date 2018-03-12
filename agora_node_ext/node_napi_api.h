@@ -127,38 +127,38 @@ private:
 /**
  * get the utf8 string from V8 value.
  */
-int napi_get_value_string_utf8_(Local<Value>& str, char *buffer, uint32_t len);
+int napi_get_value_string_utf8_(const Local<Value>& str, char *buffer, uint32_t len);
 
 /**
  * get uint32 from V8 value.
  */
-napi_status napi_get_value_uint32_(Local<Value>& value, uint32_t& result);
+napi_status napi_get_value_uint32_(const Local<Value>& value, uint32_t& result);
 
 /**
  * get bool from V8 value.
  */
-napi_status napi_get_value_bool_(Local<Value>& value, bool& result);
+napi_status napi_get_value_bool_(const Local<Value>& value, bool& result);
 
 /**
  * get int32 from V8 value.
  */
-napi_status napi_get_value_int32_(Local<Value>& value, int32_t& result);
+napi_status napi_get_value_int32_(const Local<Value>& value, int32_t& result);
 
 /**
  * get double from V8 value.
  */
-napi_status napi_get_value_double_(Local<Value>& value, double &result);
+napi_status napi_get_value_double_(const Local<Value>& value, double &result);
 
 
 /**
  * get int64 from V8 value.
  */
-napi_status napi_get_value_int64_(Local<Value>& value, int64_t& result);
+napi_status napi_get_value_int64_(const Local<Value>& value, int64_t& result);
 
 /**
  * get nodestring from V8 value.
  */
-napi_status napi_get_value_nodestring_(Local<Value>& str, NodeString& nodechar);
+napi_status napi_get_value_nodestring_(const Local<Value>& str, NodeString& nodechar);
 
 /**
  * Create V8 value from uint32

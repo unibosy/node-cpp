@@ -11,7 +11,7 @@
 #include "node_napi_api.h"
 #include "node_uid.h"
 
-int napi_get_value_string_utf8_(Local<Value>& str, char *buffer, uint32_t len)
+int napi_get_value_string_utf8_(const Local<Value>& str, char *buffer, uint32_t len)
 {
     if (!str->IsString())
         return 0;
@@ -25,7 +25,7 @@ int napi_get_value_string_utf8_(Local<Value>& str, char *buffer, uint32_t len)
     }
 }
 
-napi_status napi_get_value_uint32_(Local<Value>& value, uint32_t& result)
+napi_status napi_get_value_uint32_(const Local<Value>& value, uint32_t& result)
 {
     if (!value->IsUint32())
         return napi_invalid_arg;
@@ -33,7 +33,7 @@ napi_status napi_get_value_uint32_(Local<Value>& value, uint32_t& result)
     return napi_ok;
 }
 
-napi_status napi_get_value_bool_(Local<Value>& value, bool& result)
+napi_status napi_get_value_bool_(const Local<Value>& value, bool& result)
 {
     if (!value->IsBoolean())
         return napi_invalid_arg;
@@ -41,7 +41,7 @@ napi_status napi_get_value_bool_(Local<Value>& value, bool& result)
     return napi_ok;
 }
 
-napi_status napi_get_value_int32_(Local<Value>& value, int32_t& result)
+napi_status napi_get_value_int32_(const Local<Value>& value, int32_t& result)
 {
     if (!value->IsInt32())
         return napi_invalid_arg;
@@ -49,7 +49,7 @@ napi_status napi_get_value_int32_(Local<Value>& value, int32_t& result)
     return napi_ok;
 }
 
-napi_status napi_get_value_double_(Local<Value>& value, double &result)
+napi_status napi_get_value_double_(const Local<Value>& value, double &result)
 {
     if (!value->IsNumber())
         return napi_invalid_arg;
@@ -58,14 +58,14 @@ napi_status napi_get_value_double_(Local<Value>& value, double &result)
     return napi_ok;
 }
 
-napi_status napi_get_value_int64_(Local<Value>& value, int64_t& result)
+napi_status napi_get_value_int64_(const Local<Value>& value, int64_t& result)
 {
     int32_t tmp;
     napi_status status = napi_get_value_int32_(value, tmp);
     result = tmp;
     return status;
 }
-napi_status napi_get_value_nodestring_(Local<Value>& str, NodeString& nodechar)
+napi_status napi_get_value_nodestring_(const Local<Value>& str, NodeString& nodechar)
 {
     napi_status status = napi_ok;
     do {
