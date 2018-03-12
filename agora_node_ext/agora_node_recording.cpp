@@ -51,15 +51,20 @@ NAPI_API_DEFINE(NodeRecordingSdk, joinChannel) {
     cout<<"coming.........."<<endl;
     
     agora::recording::RecordingConfig config;
+    config.appliteDir = "./";
 
     NodeString key, name, chan_info, applitDir, appid;   
     uid_t uid;
+    cout<<"coming.......... -1"<<endl;
     NodeRecordingSdk* pRecording = NULL;
     napi_get_native_this(args, pRecording);
+    cout<<"coming..........  -2"<<endl;
     CHECK_NATIVE_THIS(pRecording);
     napi_status status = napi_get_value_nodestring_(args[0], key);
+    cout<<"coming..........  -3"<<endl;
     CHECK_NAPI_STATUS(status);
     status = napi_get_value_nodestring_(args[1], name);
+    cout<<"coming.......... -4"<<endl;
     CHECK_NAPI_STATUS(status);
     
     status = napi_get_value_nodestring_(args[2], applitDir);
@@ -67,14 +72,24 @@ NAPI_API_DEFINE(NodeRecordingSdk, joinChannel) {
     
     status = napi_get_value_nodestring_(args[3], appid);
     CHECK_NAPI_STATUS(status);
-    
+    cout<<"coming.......... -5"<<endl;
     status = NodeUid::getUidFromNodeValue(args[4], uid);
     CHECK_NAPI_STATUS(status);
+    cout<<"coming.......... -6"<<endl;
     string str_appid = (string)appid;
-    string str_key = (string)key;
+    cout<<"coming.......... -7,appid:"<<str_appid<<endl;
+    string str_key = "";
+    cout<<"coming.......... -8"<<endl;
     string str_name = (string)name;
+    cout<<"coming.......... -9"<<endl;
     //todo
-    int result = pRecording->m_agorasdk->createChannel(str_appid, str_key, str_name, uid, config);
+
+    cout<<"coming -1.........."<<endl;
+    int result = pRecording->m_agorasdk->createChannel(str_appid, "", str_name, uid, config);
+    cout<<"pRecording->m_agorasdk->createChannel return result:"<<result<<endl;
+    while (true) {
+        usleep(1000*10);
+    }
     //napi_set_int_result(args, result);
     do {
     }while(false);
