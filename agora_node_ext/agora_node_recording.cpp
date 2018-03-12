@@ -16,6 +16,7 @@ void NodeRecordingSdk::Init(Local<Object>& module) {
     Isolate *isolate = module->GetIsolate();
     BEGIN_PROPERTY_DEFINE(NodeRecordingSdk, createInstance, 2)//NodeRecordingSdk count of member var
         PROPERTY_METHOD_DEFINE(joinChannel)
+        PROPERTY_METHOD_DEFINE(leaveChannel)
     EN_PROPERTY_DEFINE()
     module->Set(String::NewFromUtf8(isolate, "NodeRecordingSdk"), tpl->GetFunction());
 }
@@ -48,23 +49,19 @@ NodeRecordingSdk::NodeRecordingSdk(Isolate *isolate)
 
 NAPI_API_DEFINE(NodeRecordingSdk, joinChannel) {
     LOG_ENTER;
-    cout<<"coming.........."<<endl;
+    cout<<"joinChannel..."<<endl;
     
     agora::recording::RecordingConfig config;
     config.appliteDir = "./";
 
     NodeString key, name, chan_info, applitDir, appid;   
     uid_t uid;
-    cout<<"coming.......... -1"<<endl;
     NodeRecordingSdk* pRecording = NULL;
     napi_get_native_this(args, pRecording);
-    cout<<"coming..........  -2"<<endl;
     CHECK_NATIVE_THIS(pRecording);
     napi_status status = napi_get_value_nodestring_(args[0], key);
-    cout<<"coming..........  -3"<<endl;
     CHECK_NAPI_STATUS(status);
     status = napi_get_value_nodestring_(args[1], name);
-    cout<<"coming.......... -4"<<endl;
     CHECK_NAPI_STATUS(status);
     
     status = napi_get_value_nodestring_(args[2], applitDir);
@@ -72,19 +69,13 @@ NAPI_API_DEFINE(NodeRecordingSdk, joinChannel) {
     
     status = napi_get_value_nodestring_(args[3], appid);
     CHECK_NAPI_STATUS(status);
-    cout<<"coming.......... -5"<<endl;
     status = NodeUid::getUidFromNodeValue(args[4], uid);
     CHECK_NAPI_STATUS(status);
-    cout<<"coming.......... -6"<<endl;
     string str_appid = (string)appid;
-    cout<<"coming.......... -7,appid:"<<str_appid<<endl;
     string str_key = "";
-    cout<<"coming.......... -8"<<endl;
     string str_name = (string)name;
-    cout<<"coming.......... -9"<<endl;
     //todo
 
-    cout<<"coming -1.........."<<endl;
     int result = pRecording->m_agorasdk->createChannel(str_appid, "", str_name, uid, config);
     cout<<"pRecording->m_agorasdk->createChannel return result:"<<result<<endl;
     while (true) {
@@ -94,4 +85,27 @@ NAPI_API_DEFINE(NodeRecordingSdk, joinChannel) {
     do {
     }while(false);
     LOG_LEAVE;
+}
+
+NAPI_API_DEFINE(NodeRecordingSdk, leaveChannel) {
+    LOG_ENTER;
+    cout<<"leaveChannel..."<<endl;
+    do {
+        NodeRecordingSdk* pRecording = NULL;
+        napi_get_native_this(args, pRecording);
+        CHECK_NATIVE_THIS(pRecording);
+        /*std::shared_ptr<agora::rtc::NodeVideoStreamChannel> chan;
+        for (auto& channel : pEngine->m_channels) {
+            if (channel->getUid() == 0) {
+                chan = channel;
+                break;
+            }
+        }
+        pEngine->m_channels.clear();
+        pEngine->m_channels.push_back(chan);*/
+        int result = pRecording->m_agorasdk->leaveChannel();
+        //args.GetReturnValue().Set(Integer::New(args.GetIsolate(), result));
+    } while (false);
+    LOG_LEAVE;
+
 }

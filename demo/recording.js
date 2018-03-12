@@ -22,13 +22,14 @@ class Recording  {
     }
 
     leaveChannel() {
-        /*var localRender = this.streams["local"];
-        this.streams = {};
-        this.streams["local"] = localRender;
-        return this.rtcengine.leaveChannel();*/
+        return this.recording.leaveChannel();
     }
 
 };
 let rec = new Recording();
 rec.joinChannel(null, "myrobot", null, 99999,  "./", "0c0b4b61adf94de1befd7cdd78a50444");
+
+rec.leaveChannel();
+
+
 module.exports = Recording;

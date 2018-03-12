@@ -33,6 +33,7 @@ public:
     static void Init(Local<Object>& module);
     //Wrapper for RtcEngine functions
     NAPI_API(joinChannel);
+    NAPI_API(leaveChannel);
     //NAPI_API(leaveChannel);
 //private:
    NodeRecordingSdk(Isolate *isolate);
